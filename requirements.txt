@@ -1,4 +1,3 @@
 # requirements.text
-snowflake-connector-python[pandas] pyarrow<8.1.0,>=8.0.0
-cffi==1.15.0
-pyarrow==6.0.1
+snowflake-connector-python[pandas] 
+pyarrow<8.1.0,>=8.0.0
