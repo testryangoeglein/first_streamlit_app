@@ -1,4 +1,3 @@
-#import streamlit
 import streamlit
 import pandas
 import requests
@@ -39,7 +38,7 @@ try:
   if not fruit_choice:
       streamlit.error("Please select a fruit to get information.")
   else:
-      back_from_function = get_fruityvice_data(this_fruit_choice)
+      back_from_function = get_fruityvice_data(fruit_choice)
       streamlit.dataframe(back_from_function)
      
 except URLError as e:
@@ -61,3 +60,10 @@ if streamlit.button('Get Fruit Load List'):
       my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
       my_data_rows = get_fruit_load_list()
       streamlit.dataframe(my_data_rows)
+
+# all the end user to add fruit to the list
+add_my_fruit = streamlit.text_input('What fruit would you like to add?','Kiwi')
+streamlit.write('Thanks for adding ', add_my_fruit)
+my_cur.execute("insert into fruit_load_list values ('" + add_my_fruit + "')")
+
+my_cur.execute("insert into fruit_load_list values ('from streamlit')")
